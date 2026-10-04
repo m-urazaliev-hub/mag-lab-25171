@@ -1,0 +1,397 @@
+"""
+Lab 02 — Python Basics II
+
+Complete all tasks below.
+
+Topics:
+- built-in functions
+- assignment and augmented assignment
+- operator precedence
+- type conversion
+- strings
+- print() options
+- collections
+- mutable and immutable objects
+- formatted output
+- basic PEP 8
+- reading common errors
+
+Do not use:
+- if
+- for
+- while
+- user-defined functions
+"""
+
+
+# ============================================================
+# Task 1 — Built-in Functions
+# ============================================================
+
+print("Task 1 — Built-in Functions")
+
+values = [12, 7, 19, 5, 14]
+
+# TODO:
+# Using built-in functions, calculate and print:
+#
+# number of values
+# smallest value
+# largest value
+# total
+# mean
+#
+# Do not calculate these manually.
+
+count = len(values)
+smallest = min(values)
+largest = max(values)
+total = sum(values)
+mean = sum(values) / len(values)
+
+# TODO:
+# Print the results using f-strings.
+
+print(f"Number of values: {count}" )
+print(f"Smallest value: {smallest}" )
+print(f"Largest value: {largest}" )
+print(f"Total: {total}" )
+print(f"Mean: {mean}" )
+
+print()
+
+
+# ============================================================
+# Task 2 — Absolute Value and Rounding
+# ============================================================
+
+print("Task 2 — Absolute Value and Rounding")
+
+temperature_change = -7.438
+measurement = 19.87654
+
+# TODO:
+# Print the absolute value of temperature_change.
+#
+# Expected numerical value:
+# 7.438
+
+print(f"Absolute value: {abs(temperature_change)}")
+
+# TODO:
+# Round measurement to:
+#
+# 1 decimal place
+# 2 decimal places
+# 3 decimal places
+#
+# Use round().
+
+print(f"Rounded to 1 decimal place: {round(measurement, 1)}")
+print(f"Rounded to 2 decimal places: {round(measurement, 2)}")
+print(f"Rounded to 3 decimal places: {round(measurement, 3)}")
+
+print()
+
+
+# ============================================================
+# Task 3 — Assignment and Augmented Assignment
+# ============================================================
+
+print("Task 3 — Assignment and Augmented Assignment")
+
+balance = 1000.0
+
+# Perform the following operations using augmented assignment:
+#
+# 1. Add 250 to the balance.
+# 2. Subtract 120.
+# 3. Multiply the remaining balance by 1.05.
+#
+# TODO:
+# Replace the normal assignments below with +=, -=, and *=.
+
+balance += 250
+balance -= 120
+balance *= 1.05
+
+# TODO:
+# Print the final balance with two decimal places.
+
+print(f"Final balance: {balance:.2f}" )
+
+print()
+
+
+# ============================================================
+# Task 4 — Operator Precedence
+# ============================================================
+
+print("Task 4 — Operator Precedence")
+
+# Before running the program, predict each result.
+
+expression_1 = 2 + 3 * 4
+expression_2 = (2 + 3) * 4
+expression_3 = 20 / 5 + 3
+expression_4 = 20 / (5 + 3)
+expression_5 = 2 ** 3 ** 2
+
+# TODO:
+# Print each expression and its result.
+#
+# Example:
+# 2 + 3 * 4 = 14
+
+print(f"2 + 3 * 4 = {expression_1}")
+print(f"(2 + 3) * 4 = {expression_2}")
+print(f"20 / 5 + 3 = {expression_3}")
+print(f"20 / (5 + 3) = {expression_4}")
+print(f"2 ** 3 ** 2 = {expression_5}")
+
+print()
+
+
+# ============================================================
+# Task 5 — Time Conversion
+# ============================================================
+
+print("Task 5 — Time Conversion")
+
+# TODO:
+# Ask the user to enter a number of seconds.
+
+total_seconds = int(input("Enter a number of seconds: "))
+
+# TODO:
+# Convert the input to int.
+
+# TODO:
+# Calculate:
+#
+# whole minutes
+# remaining seconds
+#
+# Example:
+# 135 seconds -> 2 minutes and 15 seconds
+#
+# Hint:
+# // and %
+
+minutes = total_seconds // 60          # полные минуты (целочисленное деление)
+remaining_seconds = total_seconds % 60 # оставшиеся секунды (остаток от деления)
+
+# TODO:
+# Print:
+# 135 seconds = 2 minute(s) and 15 second(s)
+
+print(f"{total_seconds} seconds = {minutes} minute(s) and {remaining_seconds} second(s)")
+
+print()
+
+
+# ============================================================
+# Task 6 — Conversion Is Not Always Reversible
+# ============================================================
+
+print("Task 6 — Type Conversion")
+
+value = 17.95
+
+# TODO:
+# Convert value to int and print it.
+#
+# Question:
+# Does int() round the value?
+
+integer_value = int(value)
+print(f"Integer value: {integer_value}")
+
+# TODO:
+# Convert integer_value back to float and print it.
+
+float_value = float(integer_value)
+print(f"Float value: {float_value}")
+
+# TODO:
+# Convert integer_value to str and print:
+#
+# Value as text: <value>
+# Type: <type>
+#
+# Use type() for the second line.
+
+text_value = str(integer_value)
+print(f"Value as text: {text_value}")
+print(f"Type: {type(text_value)}")
+
+
+print()
+
+
+# ============================================================
+# Task 7 — Basic String Operations
+# ============================================================
+
+print("Task 7 — Basic String Operations")
+
+first_name = input("First name: ")
+last_name = input("Last name: ")
+
+# TODO:
+# Create full_name using string concatenation.
+
+full_name = first_name + " " + last_name
+
+# TODO:
+# Print:
+#
+# Full name: <full_name>
+# Number of characters: <length>
+# First character: <first character>
+# Last character: <last character>
+# First three characters: <slice>
+
+print(f"Full name: {full_name}")
+print(f"Number of characters: {len(full_name)}")
+print(f"First character: {full_name[0]}")
+print(f"Last character: {full_name[-1]}")
+print(f"First three characters: {full_name[:3]}")
+
+# TODO:
+# Print full_name three times using string repetition.
+
+print(full_name)
+print(full_name)
+print(full_name)
+
+print()
+
+
+# ============================================================
+# Task 8 — Useful print() Options
+# ============================================================
+
+print("Task 8 — Useful print() Options")
+
+language = "Python"
+course = "AI and Big Data Analytics"
+university = "NSU"
+
+# TODO:
+# Print the three values on one line separated by:
+#
+#  
+#
+# Expected:
+# Python | AI and Big Data Analytics | NSU
+#
+# Use sep=
+
+print(language, course, university, sep=" | ")
+
+# TODO:
+# Use two print() calls and end= so that the result is:
+#
+# Python Programming
+#
+# Do not write "Python Programming" as one string.
+
+print("Python", end=" ")
+print("Programming")
+
+print()
+
+
+# ============================================================
+# Task 9 — Collections and Choosing Data Structures
+# ============================================================
+
+print("Task 9 — Collections")
+
+student_name = "Anna"
+student_age = 22
+student_skills = ["Python", "Mathematics", "Machine Learning"]
+student_university = "NSU"
+
+# TODO:
+# Create a dictionary named student with the keys:
+#
+# name
+# age
+# skills
+# university
+
+student = {
+    "name": student_name,
+    "age": student_age,
+    "skills": student_skills,
+    "university": student_university
+}
+
+# TODO:
+# Print:
+#
+# student's name
+# student's university
+# first skill
+# number of skills
+#
+# Use dictionary access, indexing, and len().
+
+print(f"Student's name: {student['name']}")
+print(f"Student's university: {student['university']}")
+print(f"First skill: {student['skills'][0]}")
+print(f"Number of skills: {len(student['skills'])}")
+
+print()
+
+
+# ============================================================
+# Task 10 — Mutable and Immutable Objects
+# ============================================================
+
+print("Task 10 — Mutable and Immutable Objects")
+
+# List example — mutable
+
+numbers = [10, 20, 30]
+same_numbers = numbers
+
+# TODO:
+# Change the first item in numbers to 99.
+#
+# Then print both:
+#
+# numbers
+# same_numbers
+#
+# Observe what happened.
+
+numbers[0] = 99
+
+print(f"numbers: {numbers}")
+print(f"same_numbers: {same_numbers}")
+
+# String example — immutable
+
+text = "Python"
+same_text = text
+
+# TODO:
+# Create a new string by adding " Course" to text.
+#
+# Then print:
+#
+# text
+# same_text
+#
+# Compare this result with the list example.
+
+text = text + " Course"
+
+print(f"text: {text}")
+print(f"same_text: {same_text}")
+
+print()
+
