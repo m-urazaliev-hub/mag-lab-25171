@@ -1,0 +1,466 @@
+# ============================================================
+# Task 1 — Positional and keyword arguments
+# ============================================================
+# Create a function:
+#
+#   describe_student(name, age, city)
+#
+# The function should print:
+#   Name: ...
+#   Age: ...
+#   City: ...
+#
+# Call the function three times:
+# 1. using only positional arguments;
+# 2. using only keyword arguments in a different order;
+# 3. using one positional argument and the rest as keyword arguments.
+#
+# Example:
+# describe_student("Anna", 23, "Novosibirsk")
+#
+# Output:
+# Name: Anna
+# Age: 23
+# City: Novosibirsk
+
+# Write your code below:
+
+print("Task 1 — Positional and keyword arguments")
+
+def describe_student(name, age, city):
+    print(f"Name: {name}")
+    print(f"Age: {age}")
+    print(f"City: {city}")
+
+#1. Positional arguments
+describe_student("Anna", 23, "Novosibirsk")
+#2. Keyword arguments
+describe_student(age=23, city="Novosibirsk", name="Anna")
+#3. Positional and keyword arguments
+describe_student("Anna", age=23, city="Novosibirsk")
+
+# ============================================================
+# Task 2 — Default arguments
+# ============================================================
+# Create a function:
+#
+#   shipping_cost(weight, rate=2.5)
+#
+# It should return:
+#   weight * rate
+#
+# Call it:
+# 1. with only weight;
+# 2. with a custom rate;
+# 3. with rate passed as a keyword argument.
+#
+# Example:
+# shipping_cost(4)
+# returns 10.0
+
+# Write your code below:
+
+print("Task 2 — Default arguments")
+
+def shipping_cost(weight, rate=2.5):
+    return weight * rate
+
+# 1. with only weight
+result1 = shipping_cost(4)
+print(result1)  # Expected output: 10.0
+
+# 2. with a custom rate
+result2 = shipping_cost(4, rate=3.0)
+print(result2)  # Expected output: 12.0
+
+# 3. with rate passed as a keyword argument
+result3 = shipping_cost(4, rate=5.0)
+print(result3)  # Expected output: 20.0
+
+# ============================================================
+# Task 3 — Early return
+# ============================================================
+# Create a function:
+#
+#   safe_divide(a, b)
+#
+# If b is 0, return None immediately.
+# Otherwise return a / b.
+#
+# Test:
+# safe_divide(10, 2)  -> 5.0
+# safe_divide(10, 0)  -> None
+
+# Write your code below:
+
+print("Task 3 — Early return")
+
+def safe_divide(a, b):
+    if b == 0:
+        return None
+    return a / b
+
+print(safe_divide(10, 2))  # Expected output: 5.0
+print(safe_divide(10, 0))  # Expected output: None
+
+
+# ============================================================
+# Task 4 — *args: total score
+# ============================================================
+# Create a function:
+#
+#   total_score(*scores)
+#
+# Return the sum of all scores.
+#
+# The function must work with any number of arguments,
+# including zero arguments.
+#
+# Examples:
+# total_score(10, 20, 30) -> 60
+# total_score(5)          -> 5
+# total_score()           -> 0
+#
+# Inside the function, scores is a tuple.
+
+# Write your code below:
+
+print("Task 4 — *args: total score")
+
+def total_score(*scores):
+    return sum(scores)
+
+print(total_score(10, 20, 30))  # Expected output: 60
+print(total_score(5))           # Expected output: 5
+print(total_score())            # Expected output: 0
+
+# ============================================================
+# Task 5 — *args: average score
+# ============================================================
+# Create a function:
+#
+#   average_score(*scores)
+#
+# If no scores are given, return None.
+# Otherwise return the arithmetic mean.
+#
+# Examples:
+# average_score(80, 90, 100) -> 90.0
+# average_score()             -> None
+
+# Write your code below:
+
+print("Task 5 — *args: average score")
+
+def average_score(*scores):
+    if len(scores) == 0:
+        return None
+
+    return sum(scores) / len(scores)
+
+print(average_score(80, 90, 100))  # Expected output: 90.0
+print(average_score())             # Expected output: None
+
+# ============================================================
+# Task 6 — **kwargs: profile
+# ============================================================
+# Create a function:
+#
+#   show_profile(**details)
+#
+# Print each key and value in this form:
+#   key: value
+#
+# Example call:
+# show_profile(name="Anna", city="Novosibirsk", year=1)
+#
+# Possible output:
+# name: Anna
+# city: Novosibirsk
+# year: 1
+
+# Write your code below:
+
+print("Task 6 — **kwargs: profile")
+
+def show_profile(**details):
+    for key, value in details.items():
+        print(f"{key}: {value}")
+
+show_profile(name="Anna", city="Novosibirsk", year=1)
+
+
+# ============================================================
+# Task 7 — Combining fixed arguments, *args, and **kwargs
+# ============================================================
+# Create a function:
+#
+#   course_report(student, *scores, **options)
+#
+# It should print:
+#   Student: ...
+#   Scores: (...)
+#   Options: {...}
+#
+# Example:
+# course_report(
+#     "Mira",
+#     80, 92, 75,
+#     rounded=True,
+#     scale=100
+# )
+#
+# Expected structure:
+# Student: Mira
+# Scores: (80, 92, 75)
+# Options: {'rounded': True, 'scale': 100}
+
+# Write your code below:
+
+print("Task 7 — Combining fixed arguments, *args, and **kwargs")
+
+def course_report(student, *scores, **options):
+    print(f"Student: {student}")
+    print(f"Scores: {scores}")
+    print(f"Options: {options}")
+
+    course_report(
+        "Mira",
+        80, 92, 75,
+        rounded=True,
+        scale=100
+    )
+
+# ============================================================
+# Task 8 — Scope
+# ============================================================
+# Create a global variable:
+#
+#   TAX_RATE = 0.20
+#
+# Create a function:
+#
+#   final_price(price)
+#
+# Inside the function:
+# 1. calculate a LOCAL variable called tax;
+# 2. return price + tax.
+#
+# Do not modify TAX_RATE.
+#
+# Example:
+# final_price(100) -> 120.0
+#
+# Think about:
+# - TAX_RATE is global.
+# - tax exists only inside final_price().
+
+# Write your code below:
+
+print("Task 8 — Scope")
+
+tax_rate = 0.20  # Global variable
+def final_price(price):
+    tax = price * tax_rate  # Local variable
+    return price + tax
+
+print(final_price(100))  
+
+
+# ============================================================
+# Task 9 — Recursive countdown
+# ============================================================
+# Create a recursive function:
+#
+#   countdown(n)
+#
+# If n == 0:
+#   print("Go!")
+#   stop the function.
+#
+# Otherwise:
+#   print n
+#   call countdown(n - 1)
+#
+# Do NOT use a loop.
+#
+# Example:
+# countdown(3)
+#
+# Output:
+# 3
+# 2
+# 1
+# Go!
+
+# Write your code below:
+
+print("Task 9 — Recursive countdown")
+
+def countdown(n):
+    if n == 0:
+        print("Go!")
+        return
+    else:
+        print(n)
+        countdown(n - 1)
+
+countdown(3)  
+
+
+# ============================================================
+# Task 10 — Recursive factorial
+# ============================================================
+# Create a recursive function:
+#
+#   factorial(n)
+#
+# Rules:
+# - if n < 0, return None;
+# - if n == 0, return 1;
+# - otherwise return n * factorial(n - 1).
+#
+# Do NOT use a loop.
+#
+# Examples:
+# factorial(5)  -> 120
+# factorial(0)  -> 1
+# factorial(-2) -> None
+
+# Write your code below:
+
+print("Task 10 — Recursive factorial")
+
+def factorial(n):
+    if n < 0:
+        return None
+    elif n == 0:
+        return 1
+
+    return n * factorial(n - 1)
+
+
+# ============================================================
+# Task 11 — Recursive sum
+# ============================================================
+# Create a recursive function:
+#
+#   sum_to(n)
+#
+# It should return:
+#   1 + 2 + 3 + ... + n
+#
+# Rules:
+# - if n < 0, return None;
+# - if n == 0, return 0;
+# - otherwise use recursion.
+#
+# Do NOT use a loop and do NOT use sum().
+#
+# Examples:
+# sum_to(4) -> 10
+# sum_to(0) -> 0
+
+# Write your code below:
+
+print("Task 11 — Recursive sum")
+
+def sum_to(n):
+    if n < 0:
+        return None
+ 
+    if n == 0:
+        return 0
+
+    return n + sum_to(n - 1)
+
+print(sum_to(4))
+print(sum_to(0))
+print(sum_to(-2))  
+
+# ============================================================
+# Task 12 — math module and list methods
+# ============================================================
+# Part A — math
+#
+# Import math.
+#
+# Ask the user for the radius of a circle.
+# Calculate and print:
+# - circumference = 2 * math.pi * radius
+# - area = math.pi * radius ** 2
+# - area rounded UP with math.ceil()
+# - area rounded DOWN with math.floor()
+#
+# Example for radius 3:
+# Circumference: 18.849...
+# Area: 28.274...
+# Area ceil: 29
+# Area floor: 28
+#
+#
+# Part B — list methods
+#
+# Start with:
+# numbers = [10, 20, 20, 30]
+#
+# Perform these operations in order:
+# 1. append 40
+# 2. extend with [50, 60]
+# 3. insert 15 at index 1
+# 4. print how many times 20 appears
+# 5. print the index of the first 30
+# 6. remove the first 20
+# 7. pop the last item and save it in removed
+# 8. print numbers
+# 9. print removed
+#
+# Do not use sorted() in this task.
+
+# Write your code below:
+
+print("Task 12 — math module and list methods")
+
+import math
+
+radius = float(input("Enter the radius: "))
+
+circumference = 2 * math.pi * radius
+area = math.pi * radius ** 2
+
+print("Circumference:", circumference)
+print("Area:", area)
+print("Area ceil:", math.ceil(area))
+print("Area floor:", math.floor(area))
+
+# Part B — list methods
+
+numbers = [10, 20, 20, 30]
+
+#1. append 40
+numbers.append(40)
+
+#2. extend with [50, 60]
+numbers.extend([50, 60])    
+
+#3. insert 15 at index 1
+numbers.insert(1, 15)
+
+#4. print how many times 20 appears
+print(numbers.count(20))
+
+#5. print the index of the first 30
+print(numbers.index(30))
+
+#6. remove the first 20
+numbers.remove(20)
+
+#7. pop the last item and save it in removed
+removed = numbers.pop()
+
+#8. print numbers
+print(numbers)
+
+#9. print removed
+print(removed)
+
