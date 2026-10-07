@@ -1,0 +1,243 @@
+# ============================================================
+# Task 1 — Clean a student name
+# ============================================================
+# Given raw = "  aLiCe SMITH  ", print "Alice Smith". Use strip() and a
+# case method. Explain in a comment why the original raw value does not
+# change.
+
+# Write your code below:
+
+print("Task 1 - Clean a student name")
+
+raw = "  aLiCe SMITH  "
+cleaned = raw.strip().title()
+print(cleaned)
+
+
+# ============================================================
+# Task 2 — Extract a filename extension
+# ============================================================
+# Given filename = "final.report.pdf", print the text after the last dot.
+# Then test "notes.txt". You may use split(). Assume a dot exists.
+
+# Write your code below:
+
+print("Task 2 - Extract a filename extension")
+
+filename = "final.report.pdf"
+extension = filename.split(".")[-1]
+
+print(extension)
+
+filename2 = "notes.txt"
+extension2 = filename2.split(".")[-1]
+print(extension2)
+
+
+# ============================================================
+# Task 3 — Split and join words
+# ============================================================
+# Given text = "  Python   files  are useful  ", create the list of words
+# using split() and print the cleaned sentence with single spaces using
+# join().
+
+# Write your code below:
+
+print("Task 3 - Split and join words")
+
+text = "  Python   files  are useful  "
+words = text.split()
+
+print(words)
+
+cleaned_sentence = " ".join(words)
+print(cleaned_sentence)
+
+# ============================================================
+# Task 4 — Count a substring
+# ============================================================
+# For text = "banana bandana", print how many times "ana" occurs using
+# count(). Then print whether the text starts with "ban" and ends with
+# "ana". count() uses non-overlapping matches.
+
+# Write your code below:
+
+print("Task 4 - Count a substring")
+
+text = "banana bandana"
+count = text.count("ana")
+starts = text.startswith("ban")
+ends = text.endswith("ana")
+
+print(count)
+print(starts)
+print(ends)
+
+# ============================================================
+# Task 5 — Find an optional separator
+# ============================================================
+# Write split_code(value). If value contains a hyphen, return the text
+# before it. Otherwise return the whole value. Use find(), check for -1,
+# and test "NS-205" and "NS205".
+
+# Write your code below:
+
+print("Task 5 - Find an optional separator")
+
+def split_code(value):
+    position = value.find("-")
+    if position == -1:
+        return value
+    return value[:position]
+
+print(split_code("NS-205"))
+print(split_code("NS205"))
+
+# ============================================================
+# Task 6 — Normalize a simple record
+# ============================================================
+# Given row = "  Anna , 82 , NSU  ", split on commas, strip each piece,
+# and print "Anna | 82 | NSU". Assume no commas occur inside a field.
+
+# Write your code below:
+
+print("Task 6 - Normalize a simple record")
+
+row = "  Anna , 82 , NSU  "
+
+parts = row.split(",")
+
+cleaned_parts = []
+
+for part in parts:
+    cleaned_parts.append(part.strip())
+result = " | ".join(cleaned_parts)
+print(result)
+
+
+# ============================================================
+# Task 7 — Find numbers in text
+# ============================================================
+# Import re. From "Rooms B-204, C-17, A-315", use re.findall() with a raw-
+# string pattern to extract the digit sequences as strings. Convert them
+# to integers and print both lists.
+
+# Write your code below:
+
+print("Task 7 - Find numbers in text")
+
+import re
+text = "Rooms B-204, C-17, A-315"
+
+number_strings = re.findall(r"[0-9]+", text)
+
+number_integers = [int(number) for number in number_strings]
+
+print(number_strings)
+print(number_integers)
+
+# ============================================================
+# Task 8 — Check a student ID
+# ============================================================
+# Write is_valid_id(value). Return True only if the entire string has two
+# uppercase ASCII letters, one hyphen, and exactly four ASCII digits. Use
+# re.fullmatch(). Test "AB-2047", "A-2047", and "xAB-2047".
+
+# Write your code below:
+
+print("Task 8 - Check a student ID")
+
+import re
+
+def is_valid_id(value):
+    pattern = r"[A-Z]{2}-[0-9]{4}"
+    return re.fullmatch(pattern, value) is not None
+
+print(is_valid_id("AB-2047"))  # True
+print(is_valid_id("A-2047"))   # False
+print(is_valid_id("xAB-2047")) # False
+
+# ============================================================
+# Task 9 — Compare three regex functions
+# ============================================================
+# With pattern r"[0-9]+" and text "Room 204", print Boolean results from
+# re.search(), re.match(), and re.fullmatch(). Then repeat fullmatch()
+# with "204". Add a comment explaining each result.
+
+# Write your code below:
+
+print("Task 9 - Compare three regex functions")
+
+pattern = r"[0-9]+"
+text = "Room 204"
+
+print(re.search(pattern, text) is not None)  # True, finds 204 anywhere
+print(re.match(pattern, text) is not None)   # False, text does not start with digits
+print(re.fullmatch(pattern, text) is not None)  # False, the whole text is not just digits
+
+print(re.fullmatch(pattern, "204") is not None)  # True, the whole text is just digits
+
+# ============================================================
+# Task 10 — Extract candidate dates
+# ============================================================
+# From "Due 28/09/2026; revised 02/10/2026; invalid 99/99/2026", use
+# findall() to extract all DD/MM/YYYY-shaped substrings. Explain why a
+# match does not establish that a date exists.
+
+# Write your code below:
+
+print("Task 10 - Extract candidate dates")
+
+text = "Due 28/09/2026; revised 02/10/2026; invalid 99/99/2026"
+
+pattern = r"[0-9]{2}/[0-9]{2}/[0-9]{4}"
+
+dates = re.findall(pattern, text)
+
+print(dates)
+
+# ============================================================
+# Task 11 — Find email-like tokens
+# ============================================================
+# From "Contact ada@example.com or bob.smith@nsu.ru", use findall() with
+# [A-Za-z0-9._]+@[A-Za-z0-9.]+ to extract candidate addresses. State that
+# this is a classroom pattern, not complete email validation.
+
+# Write your code below:
+
+print("Task 11 - Find email-like tokens")
+
+text = "Contact ada@example.com or bob.smith@nsu.ru"
+
+pattern = r"[A-Za-z0-9._]+@[A-Za-z0-9.]+"
+
+emails = re.findall(pattern, text)
+
+print(emails)
+
+
+# ============================================================
+# Task 12 — Clean and select codes
+# ============================================================
+# Given values = [" ns-205 ", "AB-2047", "invalid", " xy-3001 "], strip
+# and uppercase each value. Keep only valid IDs in the two-letter/four-
+# digit format from Task 8. Print the resulting list.
+
+# Write your code below:
+
+print("Task 12 - Clean and select codes")
+
+import re
+
+values = [" ns-205 ", "AB-2047", "invalid", " xy-3001 "]
+
+pattern = r"[A-Z]{2}-[0-9]{4}"
+
+valid_ids = []
+for value in values:
+    cleaned = value.strip().upper()
+
+    if re.fullmatch(pattern, cleaned):
+        valid_ids.append(cleaned)
+        
+print(valid_ids)
